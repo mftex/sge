@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Supplier(models.Model):
     name = models.CharField(max_length=500)
     description = models.TextField(blank=True, null=True)
