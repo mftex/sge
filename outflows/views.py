@@ -13,10 +13,10 @@ class OutflowListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        name = self.request.GET.get('product')
+        product = self.request.GET.get('product')
 
-        if name:
-            queryset = queryset.filter(product__name__icontains=name)
+        if product:
+            queryset = queryset.filter(product__name__icontains=product)
 
         return queryset
 
