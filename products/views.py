@@ -28,22 +28,21 @@ class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
         if brand:
             queryset = queryset.filter(brand__id=brand)
-        
+
         if title:
             queryset = queryset.filter(title__icontains=title)
 
         if serie_number:
             queryset = queryset.filter(serie_number__icontains=serie_number)
-            
+
         return queryset
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product_metrics'] = metrics.get_product_metrics()
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()
         return context
-        
 
 
 class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -52,6 +51,7 @@ class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     form_class = forms.ProductForm
     success_url = reverse_lazy('product_list')
     permission_required = 'products.add_product'
+
 
 class ProductDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Product
@@ -65,6 +65,7 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     form_class = forms.ProductForm
     success_url = reverse_lazy('product_list')
     permission_required = 'products.change_product'
+
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = models.Product

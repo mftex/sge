@@ -1,6 +1,5 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from outflows import models
 from outflows.models import Outflow
 
 

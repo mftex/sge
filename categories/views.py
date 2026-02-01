@@ -19,7 +19,7 @@ class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
         if name:
             queryset = queryset.filter(name__icontains=name)
-            
+
         return queryset
 
 
@@ -43,6 +43,7 @@ class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     form_class = forms.CategoryForm
     success_url = reverse_lazy('category_list')
     permission_required = 'categories.change_category'
+
 
 class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Category

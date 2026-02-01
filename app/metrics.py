@@ -53,7 +53,7 @@ def get_daily_sales_data():
         ).aggregate(
             total_sales=Sum(F('product__selling_price') * F('quantity'))
         )['total_sales'] or 0
-        
+
         values.append(float(sales_total))
 
     return dict(
@@ -81,7 +81,6 @@ def get_daily_sales_quantity_data():
 def get_graphic_product_category_metric():
     categories = Category.objects.all()
     return {category.name: Product.objects.filter(category=category).count() for category in categories}
-
 
 
 def get_graphic_product_brand_metric():

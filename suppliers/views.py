@@ -19,7 +19,7 @@ class SupplierListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
         if name:
             queryset = queryset.filter(name__icontains=name)
-            
+
         return queryset
 
 
@@ -29,11 +29,6 @@ class SupplierCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView
     form_class = forms.SupplierForm
     success_url = reverse_lazy('supplier_list')
     permission_required = 'suppliers.add_supplier'
-
-class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    model = models.Supplier
-    template_name = 'supplier_detail.html'
-    permission_required = 'suppliers.view_supplier'
 
 
 class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):

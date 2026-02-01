@@ -22,7 +22,7 @@ class OutflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
             queryset = queryset.filter(product__name__icontains=product)
 
         return queryset
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sales_metrics'] = metrics.get_sales_metrics
@@ -36,11 +36,12 @@ class OutflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     success_url = reverse_lazy('outflow_list')
     permission_required = 'outflows.add_outflow'
 
+
 class OutflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
     model = models.Outflow
     template_name = 'outflow_detail.html'
     permission_required = 'outflows.view_outflow'
-    
+
 
 class OutflowCreateListApiView(generics.ListCreateAPIView):
     queryset = models.Outflow.objects.all()
